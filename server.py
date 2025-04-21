@@ -8,4 +8,4 @@ def index():
 
 @app.route("/trees")
 def trees():
-	return app.send_static_file("data/treekeeper_street_trees.geojson")
+	return app.send_static_file("data/boston_trees_with_native_column.geojson")

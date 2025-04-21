@@ -30,9 +30,18 @@ async function getTreesGeoJson() {
 
 async function addTreesLayer() {
 	const trees = await getTreesGeoJson();
+	var totalCount = 0;
+	var nativeCount = 0;
+
 	L.geoJson(trees, {
 		filter: function(feature) {
-			return (feature.properties.spp_com == 'Honeylocust');
+			totalCount++;
+			if (feature.properties.native) {
+				nativeCount++;
+				return true;
+			}
+			return false;
 		}
 	}).addTo(map)
+	console.log(nativeCount + "/" + totalCount);
 }
